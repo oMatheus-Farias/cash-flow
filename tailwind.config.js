@@ -16,8 +16,17 @@ export const theme = {
     },
   },
   extend: {
+    fontFamily: {
+      sans: ["Inter", "sans-serif"],
+    },
     colors: {
       background: "#141414",
+    },
+    backgroundImage: {
+      "radial-gradient-gray":
+        "radial-gradient(ellipse at bottom, #A8A8A8 -150%, transparent)",
+      "radial-gradient-green":
+        "radial-gradient(ellipse at bottom, #55D462 -150%, transparent)",
     },
   },
 }
