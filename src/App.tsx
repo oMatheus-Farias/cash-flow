@@ -1,4 +1,5 @@
 import dollarSign from "/dollar-sign.svg"
+import dollarSignCut from "/dollar-sign-cut.svg"
 import wallet from "/empty-wallet.svg"
 
 import { HeaderMobile } from "./components/header-mobile"
@@ -50,6 +51,25 @@ const App = () => {
 
                   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#55D462] bg-opacity-20">
                     <img src={dollarSign} alt="Carteira" className="h-7 w-7" />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="h-28 w-full rounded-xl border-none bg-[#242424]">
+                <CardContent className="flex h-full items-center justify-between rounded-xl bg-radial-gradient-red px-8 py-0">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm text-[#C1C1C1]">Gastos</span>
+                    <p className="text-2xl font-semibold text-white">
+                      R$ 2.000
+                    </p>
+                  </div>
+
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FD3E3E] bg-opacity-20">
+                    <img
+                      src={dollarSignCut}
+                      alt="Carteira"
+                      className="h-7 w-7"
+                    />
                   </div>
                 </CardContent>
               </Card>

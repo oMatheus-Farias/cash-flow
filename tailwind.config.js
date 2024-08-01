@@ -27,6 +27,8 @@ export const theme = {
         "radial-gradient(ellipse at bottom, #A8A8A8 -150%, transparent)",
       "radial-gradient-green":
         "radial-gradient(ellipse at bottom, #55D462 -150%, transparent)",
+      "radial-gradient-red":
+        "radial-gradient(ellipse at bottom, #FD3E3E -150%, transparent)",
     },
   },
 }
