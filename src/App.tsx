@@ -1,7 +1,13 @@
+import { HeaderMobile } from "./components/header-mobile"
+
 const App = () => {
   return (
-    <div>
-      <h1>cash flow</h1>
+    <div className="min-h-screen w-full">
+      <div className="lg:hidden">
+        <HeaderMobile />
+      </div>
+
+      <div className="hidden lg:block"></div>
     </div>
   )
 }
