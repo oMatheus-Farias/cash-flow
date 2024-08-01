@@ -1,3 +1,7 @@
+import axios from "axios"
+import { RefreshCcw } from "lucide-react"
+import { useQuery } from "react-query"
+
 import dollarSign from "/dollar-sign.svg"
 import dollarSignCut from "/dollar-sign-cut.svg"
 import wallet from "/empty-wallet.svg"
@@ -5,11 +9,21 @@ import moneySafe from "/money-safe.svg"
 
 import { HeaderMobile } from "./components/header-mobile"
 import { Sidebar } from "./components/sidebar"
+import { TableTransactions } from "./components/table-transactions"
 import { Card, CardContent } from "./components/ui/card"
 
 const App = () => {
+  const { data, isLoading } = useQuery("balance", async () => {
+    return axios
+      .get(import.meta.env.VITE_URL_GET_BALANCE)
+      .then((response) => response.data)
+      .catch((error) => {
+        console.error(error)
+      })
+  })
+
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full pb-12">
       <div className="lg:hidden">
         <HeaderMobile />
       </div>
@@ -26,7 +40,7 @@ const App = () => {
             </h1>
 
             <div className="mt-8 flex w-full flex-col gap-4 md:flex-row md:flex-wrap xl:gap-14">
-              <div className="flex flex-col gap-4 md:flex-1 md:flex-nowrap xl:gap-14">
+              <div className="flex flex-col gap-4 md:flex-1 md:flex-nowrap xl:gap-10">
                 <Card className="h-28 w-full rounded-xl border-none bg-[#242424] lg:h-36 lg:rounded-[20px] xl:h-40">
                   <CardContent className="flex h-full items-center justify-between rounded-xl bg-radial-gradient-gray px-8 py-0 lg:rounded-[20px]">
                     <div className="flex flex-col gap-1">
@@ -34,7 +48,11 @@ const App = () => {
                         Saldo
                       </span>
                       <p className="text-2xl font-semibold text-white lg:text-3xl">
-                        R$ 2.000
+                        {isLoading ? (
+                          <RefreshCcw className="animate-spin text-white" />
+                        ) : (
+                          `R$ ${data?.balance}`
+                        )}
                       </p>
                     </div>
 
@@ -55,7 +73,11 @@ const App = () => {
                         Ganhos
                       </span>
                       <p className="text-2xl font-semibold text-white lg:text-3xl">
-                        R$ 5.000
+                        {isLoading ? (
+                          <RefreshCcw className="animate-spin text-white" />
+                        ) : (
+                          `R$ ${data?.earnings}`
+                        )}
                       </p>
                     </div>
 
@@ -70,7 +92,7 @@ const App = () => {
                 </Card>
               </div>
 
-              <div className="flex flex-col gap-4 md:flex-1 md:flex-nowrap xl:gap-14">
+              <div className="flex flex-col gap-4 md:flex-1 md:flex-nowrap xl:gap-10">
                 <Card className="h-28 w-full rounded-xl border-none bg-[#242424] lg:h-36 lg:rounded-[20px] xl:h-40">
                   <CardContent className="flex h-full items-center justify-between rounded-xl bg-radial-gradient-red px-8 py-0 lg:rounded-[20px]">
                     <div className="flex flex-col gap-1">
@@ -78,7 +100,11 @@ const App = () => {
                         Gastos
                       </span>
                       <p className="text-2xl font-semibold text-white lg:text-3xl">
-                        R$ 2.000
+                        {isLoading ? (
+                          <RefreshCcw className="animate-spin text-white" />
+                        ) : (
+                          `R$ ${Number(data?.expenses)}`
+                        )}
                       </p>
                     </div>
 
@@ -96,10 +122,14 @@ const App = () => {
                   <CardContent className="flex h-full items-center justify-between rounded-xl bg-radial-gradient-blue px-8 py-0 lg:rounded-[20px]">
                     <div className="flex flex-col gap-1">
                       <span className="text-sm text-[#C1C1C1] lg:text-lg">
-                        Gastos
+                        Investimentos
                       </span>
                       <p className="text-2xl font-semibold text-white lg:text-3xl">
-                        R$ 2.000
+                        {isLoading ? (
+                          <RefreshCcw className="animate-spin text-white" />
+                        ) : (
+                          `R$ ${Number(data?.investments)}`
+                        )}
                       </p>
                     </div>
 
@@ -113,6 +143,10 @@ const App = () => {
                   </CardContent>
                 </Card>
               </div>
+            </div>
+
+            <div className="mt-5 md:mt-12">
+              <TableTransactions />
             </div>
           </div>
         </main>
