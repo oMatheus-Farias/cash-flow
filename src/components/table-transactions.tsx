@@ -1,10 +1,9 @@
 import axios from "axios"
 import { format } from "date-fns"
-import { Plus } from "lucide-react"
 import { useQuery } from "react-query"
 
 import { DeleteTransaction } from "./delete-transaction"
-import { Button } from "./ui/button"
+import { DialogCreateTransaction } from "./dialog-create-transaction"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import {
   Table,
@@ -56,11 +55,7 @@ const TableTransactions = () => {
         <CardTitle className="text-2xl font-semibold text-white">
           Transações
         </CardTitle>
-
-        <Button className="flex h-12 w-32 gap-2 rounded-[10px] bg-[#424242] transition-all duration-200 ease-linear hover:bg-[#383838]">
-          <Plus color="#FFF" />
-          <span className="text-white">Adicionar</span>
-        </Button>
+        <DialogCreateTransaction />
       </CardHeader>
       <CardContent className="mt-10">
         <Table>
