@@ -32,8 +32,9 @@ const DeleteTransaction = ({ transactionId }: DeleteTransactionProps) => {
         .then((response) => response.data)
     },
     onSuccess: () => {
-      queryClient.invalidateQueries("transactions")
       toast.success("Registro excluído com sucesso!")
+      queryClient.invalidateQueries("transactions")
+      queryClient.invalidateQueries("balance")
     },
     onError: (error) => {
       console.error(error)

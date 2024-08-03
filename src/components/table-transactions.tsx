@@ -52,7 +52,7 @@ const TableTransactions = () => {
   return (
     <Card className="rounded-xl border-none bg-[#242424] p-8 lg:rounded-[20px]">
       <CardHeader className="w-full flex-row items-center justify-between">
-        <CardTitle className="text-2xl font-semibold text-white">
+        <CardTitle className="text-sm font-semibold text-white lg:text-2xl">
           Transações
         </CardTitle>
         <DialogCreateTransaction />
