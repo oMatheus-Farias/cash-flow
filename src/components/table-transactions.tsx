@@ -3,6 +3,7 @@ import { format } from "date-fns"
 import { Plus } from "lucide-react"
 import { useQuery } from "react-query"
 
+import { DeleteTransaction } from "./delete-transaction"
 import { Button } from "./ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import {
@@ -65,9 +66,10 @@ const TableTransactions = () => {
         <Table>
           <TableHeader>
             <TableRow className="text-base text-[#C1C1C1]">
-              <TableHead className="w-[300px]">Título</TableHead>
+              <TableHead className="w-[260px]">Título</TableHead>
               <TableHead>Data</TableHead>
-              <TableHead className="text-right">Quantidade</TableHead>
+              <TableHead>Quantidade</TableHead>
+              <TableHead className="text-right">Excluir</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody className="text-white md:text-base">
@@ -82,8 +84,11 @@ const TableTransactions = () => {
                 <TableCell>
                   {format(new Date(transaction.date), "dd/MM/yyyy")}
                 </TableCell>
-                <TableCell className="text-right font-semibold">
+                <TableCell className="font-semibold">
                   {`R$ ${Number(transaction.amount).toFixed(2)}`}
+                </TableCell>
+                <TableCell className="flex justify-end">
+                  <DeleteTransaction transactionId={transaction.id} />
                 </TableCell>
               </TableRow>
             ))}
